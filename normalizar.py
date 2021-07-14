@@ -10,9 +10,7 @@ import pandas as pd
 from sklearn import preprocessing
 
 dataframe = pd.read_csv("dados_normalizar.csv", sep=";")
-
 dados_num = dataframe.drop(columns=["sexo"])
-
 dados_cat = dataframe["sexo"]
 
 #print(dados_num.head())
@@ -56,7 +54,7 @@ dados_num_normalizados_2 = normalizador.fit_transform(dados_num)
 #print(dados_num_normalizados_2)
 
 #Normalizar os dados Categoricos(Coluna Sexo)
-print("Classes Originais")
+#print("Classes Originais")
 dados_cat_normalizados = pd.get_dummies(dados_cat, prefix="sexo")
 #print(dados_cat_normalizados)
 
@@ -66,4 +64,4 @@ dados_num = pd.DataFrame(dados_num_normalizados_2, columns=["Idade", "Altura", "
 
 #Juntar com as categorias normalizadas
 dados_finais = dados_num.join(dados_cat_normalizados, how="left")
-print(dados_finais)
+#print(dados_finais)
