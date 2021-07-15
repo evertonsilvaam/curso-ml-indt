@@ -71,16 +71,15 @@ def plot_and_save_distortions_bow(k):
 def get_intertia(data, model, turns, console_log):
     intertia = []
     for turn in turns:
-        k_model = KMeans(n_clusters=turn).fit(data)
+        k_model = KMeans(n_clusters=turn, random_state=1).fit(data)
         intertia.append(k_model.inertia_)
     if console_log: print(intertia)
     return intertia
 
 def get_distances(sum_square, console_log):
-    x1 = 1
+    x1 = 2
     y1 = sum_square[0]
-
-    x2 = 10
+    x2 = 100
     y2 = sum_square[len(sum_square)-1]
 
     distancias = []
@@ -95,7 +94,22 @@ def get_distances(sum_square, console_log):
     print("Numero otimo de clusters", n_cluster_otimo)
     return n_cluster_otimo
 
-k = range(1,11)
+def save_model_with_picle(normalize_model, model_name):
+    # Salvar o modelo normalizador
+    from pickle import dump
+    dump(normalize_model, open(model_name+".pkl", "wb"))
+
+def load_model_with_picle(normalize_model, model_name):
+    #Carregar o modelo normalizador salvo
+    from pickle import load
+    normalize_model = load(open(model_name+".pkl", "rb"))
+    return normalize_model
+
+# Obter o modelo otimizado de clusters - n_cluster_otimo
+# Imprimir os centroids do modelo obtido
+# salvar o modelo em disco - Picle
+
+k = range(2,100)
 
 dataframe = read_dataset(False)
 
@@ -107,7 +121,9 @@ distorcoes = get_distortions(data, model, k, False)
 
 soma_quadrados = get_intertia(data, model, k, False)
 
-plot_and_save_distortions_bow(k=range(1,11))
+#plot_and_save_distortions_bow(k)
 
-get_distances(soma_quadrados, True)
+n_cluster_otimo = get_distances(soma_quadrados, False)
+
+save_model_with_picle(model, "cluster_kmeans")
 
