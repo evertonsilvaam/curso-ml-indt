@@ -9,9 +9,9 @@
 import pandas as pd
 from sklearn import preprocessing
 
-dataframe = pd.read_csv("dados_normalizar.csv", sep=";")
-dados_num = dataframe.drop(columns=["sexo"])
-dados_cat = dataframe["sexo"]
+dataset = pd.read_csv("dados_normalizar.csv", sep=";")
+dados_num = dataset.drop(columns=["sexo"])
+dados_cat = dataset["sexo"]
 
 #print(dados_num.head())
 

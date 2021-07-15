@@ -7,6 +7,4 @@ iris_cluster = load(open("cluster_kmeans.pkl", "rb"))
 res = iris_cluster.predict(nova_flor)
 print(res)
 
-
-
 print(iris_cluster.cluster_centers_[res])
