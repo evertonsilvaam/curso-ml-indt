@@ -108,7 +108,7 @@ def load_model_with_picle(normalize_model, model_name):
 # Obter o modelo otimizado de clusters - n_cluster_otimo
 # Imprimir os centroids do modelo obtido
 # salvar o modelo em disco - Picle
-
+"""
 k = range(2,100)
 
 dataframe = read_dataset(False)
@@ -126,4 +126,4 @@ soma_quadrados = get_intertia(data, model, k, False)
 n_cluster_otimo = get_distances(soma_quadrados, False)
 
 save_model_with_picle(model, "cluster_kmeans")
-
+"""
